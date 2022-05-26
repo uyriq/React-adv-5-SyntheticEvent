@@ -49,7 +49,8 @@ class Lootboxer extends React.Component {
     super(props);
   }
   state = {
-    currentItem: null
+    currentItem: null,
+    isHovered: false
   };
 
   handleNewTryClick = (e) => {
@@ -63,12 +64,38 @@ class Lootboxer extends React.Component {
     });
   };
 
+  handleItemHover = (e) => {
+    // Присвоим handleAgressiveButtonMouseEnter значение в виде стрелочной функции.
+    console.log(this);
+    // При вызове этого обработчика this равен экземпляру компонента.
+    console.log(this.state.isHovered);
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        isHovered: !prevState.isHovered
+      }
+    })
+
+  };
+
+
+
+
   render() {
     return (
       <section className={lootboxerStyles.root}>
+        <p className={lootboxerStyles.description}>
+          {
+            this.state.currentItem && this.state.isHovered &&
+            <span>{this.state.currentItem.description}</span>
+          }
+        </p>
 
         <div
           className={lootboxerStyles.card}
+          /* div.card и h2.title пропишите слушатели событий onMouseEnter и onMouseLeave */
+          onMouseEnter={this.handleItemHover}
+          onMouseLeave={this.handleItemHover}
         >
           {
             !this.state.currentItem
@@ -79,6 +106,8 @@ class Lootboxer extends React.Component {
 
         <h2
           className={lootboxerStyles.title}
+          onMouseEnter={this.handleItemHover}
+          onMouseLeave={this.handleItemHover}
         >
           {
             this.state.currentItem &&

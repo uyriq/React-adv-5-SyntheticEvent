@@ -47,11 +47,13 @@ const getRandomElement = arr => arr[Math.floor(Math.random() * arr.length)];
 class Lootboxer extends React.Component {
   constructor(props) {
     super(props);
+    this.buttonElement = React.createRef();
   }
   state = {
     currentItem: null,
     isHovered: false
   };
+
 
   handleNewTryClick = (e) => {
     // Присвоим handleNewTryClick значение в виде стрелочной функции.
@@ -90,6 +92,21 @@ class Lootboxer extends React.Component {
     
   };
   
+  componentDidMount() {
+        this.buttonElement.current.addEventListener(componentDidMount() {
+              this.buttonElement.current.addEventListener(
+                    "click",
+                          this.handleAgressiveButtonClick
+                              );
+                                  // После монтирования компонента добавим слушатель на реф.
+                                    } 
+        }
+              "click",
+                    this.handleAgressiveButtonClick
+                        );
+                            // После монтирования компонента добавим слушатель на реф.
+                              }
+  }
   
   
   render() {

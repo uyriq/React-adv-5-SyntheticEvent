@@ -130,16 +130,12 @@ class Lootboxer extends React.Component {
         </h2>
 
         <div className={lootboxerStyles.controls}>
-          
           { !this.state.currentItem 
               ? { poexaliButton
             }
               : {/* Кнопки «Забираю» и «Ещё разок» */
-            takeButton,
-            againButton
+            takeButton
             }
-            
-           
           }
         </div>
 

@@ -64,6 +64,18 @@ class Lootboxer extends React.Component {
     });
   };
 
+  handleTakeClick = (e) => {
+    // Присвоим handleNewTryClick значение в виде стрелочной функции.
+    console.log(this);
+    // При вызове этого обработчика this равен экземпляру компонента.
+    console.log("Вы мне солнце заслонили!");
+    this.setState({
+      ...this.state,
+      currentItem: null
+    });
+  };
+
+  
   handleItemHover = (e) => {
     // Присвоим handleAgressiveButtonMouseEnter значение в виде стрелочной функции.
     console.log(this);
@@ -75,13 +87,15 @@ class Lootboxer extends React.Component {
         isHovered: !prevState.isHovered
       }
     })
-
+    
   };
-
-
-
-
+  
+  
+  
   render() {
+    const poexaliButton=<button className={lootboxerStyles.button} onClick={this.handleNewTryClick}>Поехали</button>
+    const againButton=<button className={lootboxerStyles.button} onClick={this.handleTakeClick}>Ещё разок</button>
+    const takeButton=<button className={lootboxerStyles.button} onClick={this.handleTakeClick}>Забираю</button>
     return (
       <section className={lootboxerStyles.root}>
         <p className={lootboxerStyles.description}>
@@ -116,14 +130,16 @@ class Lootboxer extends React.Component {
         </h2>
 
         <div className={lootboxerStyles.controls}>
-          {
-            !this.state.currentItem &&
-            <button
-              className={lootboxerStyles.button}
-              onClick={this.handleNewTryClick}
-            >
-              Поехали
-            </button>
+          
+          { !this.state.currentItem 
+              ? { poexaliButton
+            }
+              : {/* Кнопки «Забираю» и «Ещё разок» */
+            takeButton,
+            againButton
+            }
+            
+           
           }
         </div>
 

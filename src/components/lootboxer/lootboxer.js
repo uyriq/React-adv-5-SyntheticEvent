@@ -45,8 +45,22 @@ const itemsData = [
 const getRandomElement = arr => arr[Math.floor(Math.random() * arr.length)];
 
 class Lootboxer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     currentItem: null
+  };
+
+  handleNewTryClick = (e) => {
+    // Присвоим handleNewTryClick значение в виде стрелочной функции.
+    console.log(this);
+    // При вызове этого обработчика this равен экземпляру компонента.
+    console.log("Вы мне солнце заслонили!");
+    this.setState({
+      ...this.state,
+      currentItem: getRandomElement(itemsData)
+    });
   };
 
   render() {
@@ -77,6 +91,7 @@ class Lootboxer extends React.Component {
             !this.state.currentItem &&
             <button
               className={lootboxerStyles.button}
+              onClick={this.handleNewTryClick}
             >
               Поехали
             </button>

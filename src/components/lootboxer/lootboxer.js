@@ -2,6 +2,8 @@ import React from 'react';
 import lootboxerStyles from './lootboxer.module.css';
 
 import lockImage from '../../images/lock.svg';
+import checkImage from '../../images/check.svg';
+import retryImage from '../../images/retry.svg';
 import crumbsImage from '../../images/crumbs.png';
 import drinkImage from '../../images/drink.png';
 import monitorImage from '../../images/monitor.png';
@@ -92,27 +94,12 @@ class Lootboxer extends React.Component {
     
   };
   
-  componentDidMount() {
-        this.buttonElement.current.addEventListener(componentDidMount() {
-              this.buttonElement.current.addEventListener(
-                    "click",
-                          this.handleAgressiveButtonClick
-                              );
-                                  // После монтирования компонента добавим слушатель на реф.
-                                    } 
-        }
-              "click",
-                    this.handleAgressiveButtonClick
-                        );
-                            // После монтирования компонента добавим слушатель на реф.
-                              }
-  }
-  
+
   
   render() {
     const poexaliButton=<button className={lootboxerStyles.button} onClick={this.handleNewTryClick}>Поехали</button>
-    const againButton=<button className={lootboxerStyles.button} onClick={this.handleTakeClick}>Ещё разок</button>
     const takeButton=<button className={lootboxerStyles.button} onClick={this.handleTakeClick}>Забираю</button>
+    const againButton=<button className={lootboxerStyles.button}  ref={this.buttonElement} onClick={this.handleNewTryClick}>Ещё разок</button>
     return (
       <section className={lootboxerStyles.root}>
         <p className={lootboxerStyles.description}>
@@ -148,11 +135,8 @@ class Lootboxer extends React.Component {
 
         <div className={lootboxerStyles.controls}>
           { !this.state.currentItem 
-              ? { poexaliButton
-            }
-              : {/* Кнопки «Забираю» и «Ещё разок» */
-            takeButton
-            }
+              ? <button className={lootboxerStyles.button} onClick={this.handleNewTryClick}>Поехали</button>
+              : <> <button onClick={this.handleTakeClick} className={lootboxerStyles.button} > <img src={checkImage} alt='Check' /> Забираю </button> <button onClick={this.handleNewTryClick} className={lootboxerStyles.button} > <img src={retryImage} alt='Retry' ref={this.buttonElement} /> Ещё разок </button> </>
           }
         </div>
 
